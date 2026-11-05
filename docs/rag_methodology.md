@@ -1,0 +1,7 @@
+# Retrieval and grounded generation
+
+Retrieval first restricts documents to the caller and processed status, then applies source IDs, publication year, type and entity filters. Aliases expand recognized query entities. Graph expansion is limited to zero, one or two hops. BM25 uses k1=1.5, b=.75 on the filtered passage corpus and is normalized by its maximum. Unit-normalized passage/query vectors use cosine dot products. Graph score is one for matching edge evidence and zero otherwise. Metadata score is query-token overlap with the document title, not source reliability.
+
+Validated nonnegative weights are normalized to sum to one. Defaults are .40 vector, .25 keyword, .25 graph and .10 metadata. Thresholds and top-k are configurable. These scores do not estimate truth, study strength, or clinical confidence. Offline hashing is lexical similarity; semantic embeddings require an explicitly installed and configured SentenceTransformer model.
+
+The LangGraph workflow packages returned passages, reports exact positive/negative graph conflicts and chooses exact excerpts. Optional provider output is structured JSON that can select only stored source substrings. Unavailable/invalid provider output falls back to deterministic extracts. No generated clinical claim or bibliography is trusted automatically. Exported response objects preserve retrieval scores, modes, graph evidence, limitations and execution details.

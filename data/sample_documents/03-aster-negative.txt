@@ -1,0 +1,13 @@
+SYNTHETIC EDUCATIONAL DATA — fictional compounds, targets, conditions and results.
+Title: Aster replication example reporting a different outcome
+Authors: Synthetic Replication Group
+Year: 2025
+Study type: In vitro (synthetic)
+License: CC0 synthetic text authored for this software demonstration
+Abstract: A second fictional model demonstrates how contradictory statements can be surfaced.
+Results
+Drug Aster does not inhibit Target Sigma. The fictional assay context differs from the earlier educational example.
+Discussion
+Different experimental models could explain apparent contradictions. Automated conflict flags require expert assessment.
+Limitations
+These fictional results are for testing only. They provide no evidence about any real drug, disease, or patient.

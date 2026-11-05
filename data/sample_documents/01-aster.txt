@@ -1,0 +1,15 @@
+SYNTHETIC EDUCATIONAL DATA — fictional compounds, targets, conditions and results.
+Title: Aster and Target Sigma: an educational in vitro example
+Authors: Synthetic Research Group
+Year: 2023
+Study type: In vitro (synthetic)
+License: CC0 synthetic text authored for this software demonstration
+Abstract: A fictional assay explores Drug Aster and Target Sigma. No clinical inference is possible.
+Introduction
+Drug Aster inhibits Target Sigma. Target Sigma is involved in Pathway Aurora.
+Methods
+The synthetic assay uses fictional cell cultures. This is an educational example with no actual experimental observations.
+Results
+Drug Aster inhibits Target Sigma. Drug Aster is associated with nausea in the fictional report.
+Limitations
+Synthetic observations have no scientific or clinical validity. There are no human participants and no real measurements.

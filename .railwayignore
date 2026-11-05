@@ -1,0 +1,11 @@
+.git
+.venv
+.pnpm-store
+.pytest_cache
+runtime
+frontend
+docs
+.env*
+**/__pycache__
+**/*.pyc
+**/node_modules

@@ -1,0 +1,9 @@
+node_modules
+.pnpm-store
+dist
+.env*
+!.env.example
+*.tsbuildinfo
+src/**/*.test.*
+src/test-setup.ts
+vitest.config.ts

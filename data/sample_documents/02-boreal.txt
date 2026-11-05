@@ -1,0 +1,13 @@
+SYNTHETIC EDUCATIONAL DATA — fictional compounds, targets, conditions and results.
+Title: Boreal mechanism exploration in a fictional experimental model
+Authors: Synthetic Research Group
+Year: 2024
+Study type: Preclinical (synthetic)
+License: CC0 synthetic text authored for this software demonstration
+Abstract: Drug Boreal is used to demonstrate evidence traceability in a fictional model.
+Results
+Drug Boreal activates Target Sigma. Drug Boreal is associated with headache.
+Discussion
+Target Sigma is involved in Pathway Aurora. This fictional finding cannot establish therapeutic activity.
+Limitations
+This is a software demonstration. No empirical data, real trial registration, DOI, or PMID exists.
