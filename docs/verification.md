@@ -31,3 +31,11 @@ After the user's detailed Render deployment request, the existing project and re
 Production CORS now uses only the exact configured HTTPS origin; free Render startup rejects local SQLite or filesystem upload storage. Health checks query the database and return 503 if unavailable. The frontend accepts `VITE_API_BASE_URL` and retains the existing `VITE_API_URL` fallback. No live Vercel environment was changed.
 
 Latest local verification: **27 backend tests passed** (57.99 seconds), **10 frontend tests passed**, TypeScript and production build passed. Render Blueprint validation returned `valid: true`, proposing one Free web service and one Free PostgreSQL database. Validation created no resources. The backend still has no deployed URL, and hosted frontend-to-backend communication cannot be tested until the repository/source and deployment exist. See `render-deployment-runbook.md` for the exact next steps and free-tier retention limits.
+
+## Live deployment verification (supersedes earlier pending status)
+
+Render deployment dep-dbmc38h42hec73e8h30g reached live; public https://pharmagraph-api.onrender.com/api/v1/health returned HTTP 200 with status=ok and database=ok. Actual PostgreSQL-backed registration/login, PDF extraction/upload, graph relationships, retrieval, cited research, history, error responses and original-file reprocessing passed using private synthetic verification data. Exact Vercel CORS origin was accepted; an unrelated origin was rejected.
+
+The existing Vercel project was redeployed as dpl_Fq6QsnbmWHuD5B6eur5MNo9qghCz, retaining https://pharmagraph-ai-nine.vercel.app. Its deployed bundle contains the Render API base URL, and the pending-only notice was absent after browser refresh. Frontend root and assistant SPA route returned HTTP 200. This verifies the deployed bundle/network configuration and live API workflow; a complete browser chat journey was not automated.
+
+Latest local checks: 27 backend tests passed in 55.67 seconds; 10 frontend tests passed; TypeScript, production build, pip consistency and Render Blueprint validation passed. Docker built successfully on Render. Existing source features did not require functional rewrites. See deployment.md for exact resources and free-tier expiry.

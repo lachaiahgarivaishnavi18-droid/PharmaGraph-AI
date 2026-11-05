@@ -5,8 +5,8 @@
 - Existing frontend: https://pharmagraph-ai-nine.vercel.app — keep this URL and its existing Vercel project.
 - Existing Vercel linkage: `frontend/.vercel/project.json` (ignored in Git).
 - Render CLI authentication is verified; workspace: `My Workspace`.
-- No Render services existed during the latest check. Do not create another backend if one appears later: inspect/reuse the intended service first.
-- Git remote: none. Backend deployment has **not** occurred. Source publication is awaiting the user's repository URL and explicit authorization.
+- Existing Render backend: `pharmagraph-api` (`srv-dbmc122jnfac73915ts0`); database: `pharmagraph-demo-db`. Reuse these resources.
+- Git origin is connected to `https://github.com/lachaiahgarivaishnavi18-droid/PharmaGraph-AI.git`; main was pushed normally, preserving existing history. Backend deployment is now verified live at `https://pharmagraph-api.onrender.com`.
 
 ## 1. Source and entry point
 
@@ -24,18 +24,9 @@
 
 The startup helper reads the platform PORT and drops to UID/GID 10001 before launching the API. Its temporary working directory is `/app/runtime`; that directory is not relied upon for data retention in the free deployment.
 
-## 2. Create/connect a private repository (user action)
+## 2. Existing source repository
 
-1. Open https://github.com/new while signed into the GitHub account you intend to use.
-2. Name the repository `pharmagraph-ai` (or choose another unique name).
-3. Select **Private**.
-4. Leave README, `.gitignore` and license initialization unchecked, because this project already has source files.
-5. Create the repository and copy its HTTPS URL.
-6. Provide the repository URL. Explicitly authorize source publication if you want the assistant to authenticate to GitHub, commit and push; otherwise publish it yourself using your own Git client.
-
-Do not send a GitHub password, personal access token, Render token or database password in chat. No GitHub account access or source push is authorized merely by requesting guidance. The current agent has not inspected cached GitHub credentials.
-
-Before any authorized push, inspect the pending files, ensure `.env*`, `runtime/`, `.venv/`, `.vercel/`, `node_modules/` and dependency caches are excluded, and confirm the destination is the intended private repository. Connect that specific repository to Render through GitHub's authorization flow if prompted.
+The repository is already connected and source publication was explicitly authorized. Do not create a duplicate repository. Use the existing origin and main branch, preserve history, and never force-push. `.env*`, runtime data, credentials, caches and local Vercel linkage remain excluded from version control.
 
 ## 3. Free-only persistence and costs
 
@@ -72,13 +63,13 @@ The Blueprint supplies these values:
 
 No LLM key or Neo4j service is needed for the baseline deployment. Optional paid-provider integration must be explicitly configured separately. Production CORS permits only the exact configured HTTPS frontend origin, with no wildcard and no implicit localhost exception.
 
-## 5. Validate and deploy only after source is available
+## 5. Future redeployments of the existing backend
 
 1. Confirm the repository contains the final backend files and `render.yaml` on the selected branch.
 2. Recheck Render resources to prevent duplicates.
 3. Validate `render.yaml` using `render blueprints validate render.yaml --output json`.
 4. Verify that **both resources remain `plan: free`**, with no paid disk.
-5. With the user's deployment authorization, create the Blueprint/services against the private repository and monitor the specific deployment to a terminal status.
+5. Reuse the existing service. With deployment authorization, deploy the pushed main commit and monitor that deployment to a terminal status. Do not apply a second Blueprint that creates duplicate resources.
 6. Record the actual backend HTTPS URL returned by Render. Do not guess an `onrender.com` address.
 7. Verify health and authenticated routes before enabling the frontend.
 
@@ -109,12 +100,12 @@ VITE_BACKEND_PENDING=false
 
 ## Handoff fields
 
-Until a real deployment is completed, report:
+Current verified status:
 
 | Field | Status |
 | --- | --- |
-| Backend URL | Not deployed; no URL issued |
-| Hosted health check | Not run; no backend host exists |
-| Frontend connection | Pending; existing frontend URL unchanged |
-| Blocking input | Private repository URL and authorization/source push |
+| Backend URL | https://pharmagraph-api.onrender.com |
+| Hosted health check | HTTP 200; status=ok and database=ok |
+| Frontend connection | Connected and redeployed; existing frontend URL unchanged |
+| Blocking input | None for the verified demo deployment |
 | Free-tier limits | 30-day database expiry, 1 GB data capacity, idle sleep, monthly quotas |

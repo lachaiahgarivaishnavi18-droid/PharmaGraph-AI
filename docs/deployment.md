@@ -1,27 +1,43 @@
-# Vercel frontend deployment
+# Verified live deployment
 
-Production URL: https://pharmagraph-ai-nine.vercel.app
+Frontend: https://pharmagraph-ai-nine.vercel.app
+Backend: https://pharmagraph-api.onrender.com
+Health: https://pharmagraph-api.onrender.com/api/v1/health
+Repository: https://github.com/lachaiahgarivaishnavi18-droid/PharmaGraph-AI (main)
 
-Deployed to the authenticated Vercel account as a new `pharmagraph-ai` project, following the user's explicit choice to deploy the frontend first.
+## Render
 
-- Vercel deployment: `dpl_FG4j6DPzSpbrYVmuoPT389eGNXBX`.
-- Production state returned by Vercel: `READY`.
-- Production root and `/app/assistant` verified over HTTPS: HTTP 200.
-- Deployed JavaScript verified to contain the backend-hosting-pending notice.
-- The backend, database and document storage are not deployed. Sign-in, uploads and research are intentionally unavailable on the hosted frontend until API hosting is connected.
+- Existing workspace: My Workspace.
+- Web service: pharmagraph-api, srv-dbmc122jnfac73915ts0.
+- Runtime: Docker (Python 3.12), region Singapore, compute plan free, one instance.
+- Database: pharmagraph-demo-db, dpg-dbmc1sg8v5cc73e5vhj0-a, PostgreSQL 17, plan free.
+- Application deployment dep-dbmc38h42hec73e8h30g reached live on source commit f12dc960eecc968d2f9a2f981a1a6db58dbb07c4.
+- Public health verified HTTP 200 with status=ok and database=ok.
+- No paid persistent disk, database plan, or compute plan was selected.
 
-The production build uses `VITE_BACKEND_PENDING=true` so the hosted interface states this limitation and avoids making broken API requests. To connect a future backend, set `VITE_API_URL=https://YOUR_BACKEND/api/v1`, remove or set `VITE_BACKEND_PENDING=false`, configure the backend's `FRONTEND_URL=https://pharmagraph-ai-nine.vercel.app`, and redeploy.
+Database credentials and a generated JWT secret were configured only in Render environment variables. They were not printed or written into repository files. Original uploads use database storage; local filesystem persistence is not assumed.
 
-The local production build was restored without the pending flag so it can continue using the existing localhost API proxy. Vercel project linkage is kept in ignored `frontend/.vercel/`; no account credential was added to the repository.
+The initial service deployment failed closed because the database variable was not configured yet. After the free database became available and production variables were configured, the next deployment passed. The free database rejects explicit disk-size changes; it was created using its fixed default capacity without selecting a paid plan.
 
-## Free-only backend preparation
+## Existing Vercel project
 
-The user subsequently required free hosting only. Railway refused creation due to its free-plan resource limit. Render CLI login was completed and the selected workspace is `My Workspace`; no services existed when checked.
+- Existing project: pharmagraph-ai. Its original production alias was preserved.
+- Production deployment dpl_Fq6QsnbmWHuD5B6eur5MNo9qghCz returned READY.
+- VITE_API_BASE_URL=https://pharmagraph-api.onrender.com/api/v1
+- VITE_BACKEND_PENDING=false
+- The deployed JavaScript bundle was verified to contain the Render API base URL and no longer include the frontend-only notice.
+- The open frontend tab was refreshed and the old pending notice was confirmed absent.
 
-`render.yaml` now explicitly selects only `plan: free` for a Docker web service and PostgreSQL, with no paid persistent disk. Render validation returned `valid: true` and a proposed two-resource plan. Validation did not create or deploy resources.
+## Live verification
 
-Original document bytes can now persist in the `document_files` SQL table with `DOCUMENT_STORAGE=database`, instead of the free web server's ephemeral filesystem. The `0002` migration adds this table. This mode supports reprocessing after web-server restarts and cascades stored bytes on document deletion.
+Public health, exact-origin CORS preflight, rejection of an unrelated origin, anonymous API protection, registration/login/me, real PDF upload, page metadata, graph extraction, hybrid retrieval, cited answers, session history, validation errors, and SQL-backed original-document reprocessing all passed. Tests used a separate synthetic verification account and fictional document; no existing user data was changed. Live PostgreSQL was exercised through these APIs, not by running the destructive test fixture against production.
 
-Important: [Render Free PostgreSQL expires after 30 days](https://render.com/docs/free), has 1 GB of capacity, and does not include backups. The free API sleeps when idle. This is a temporary demo configuration; no paid upgrade or resource is authorized.
+Local checks: 27 backend tests passed; 10 frontend tests passed; TypeScript, frontend build, package consistency and Render Blueprint validation passed. The Docker image built successfully on Render.
 
-Backend publication remains pending a hosted source repository or published image. There is no Git remote configured. Creating a private GitHub repository and using GitHub authentication still requires the user's explicit source choice; a prior credential check was rejected by automatic approval review before execution.
+## Limits
+
+The free database expires on 5 December 2026 (provider timestamp: 2026-12-05T17:46:26.85057Z). Capacity is 1 GB and managed backups are not included. The free web service sleeps when idle. Included bandwidth/build quotas apply. This is a verified demo deployment, not permanent production infrastructure. No paid upgrade is authorized.
+
+Use the existing services when making changes. Do not create a duplicate Vercel project, Render service or database. Backend automatic rebuilds are filtered to backend/**, scripts/**, data/**, Dockerfile, .dockerignore and render.yaml so documentation/frontend-only commits do not consume backend build minutes.
+
+See render-production-settings.md for exact settings and the Vercel connection steps.
